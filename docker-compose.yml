@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "${PORT}:9000"
+    env_file: ./.env
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider --quiet http://0.0.0.0:9000/api || exit 1"]
+      interval: 5s
+      timeout: 5s
